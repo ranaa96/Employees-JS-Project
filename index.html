@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <title>Document</title>
+    <style>
+         .hide {
+            display: none;
+        } 
+    </style>
+</head>
+<body>
+    <div id="view">
+        <div class="card">
+            <div class="card-header">
+              <h1>View</h1>
+            </div>
+            <div class="card-body" id="employesTable">
+              
+             
+            </div>
+            <div class="card-footer text-right">
+                <button class="btn btn-primary" onclick="addEmployee()">Add</button>
+            </div>
+          </div>
+    </div>
+    <div id="details" class="hide">
+        <div class="card">
+            <div class="card-header">
+              <h1>Details</h1>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputName">Name</label>
+                        <input type="text" class="form-control" id="inputName">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputAge">Age</label>
+                        <input type="number" class="form-control" id="inputAge">
+                      </div>
+                    </div>
+                    
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="inputSalary">Salary</label>
+                        <input type="number" class="form-control" id="inputSalary">
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="inputGender">Gender</label>
+                        <select id="inputGender" class="form-control">
+                          <option selected>Choose...</option>
+                          <option>Male</option>
+                          <option>Female</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+             
+            </div>
+            <div class="card-footer text-right">
+                <button class="btn btn-primary" onclick="displayView()">Back</button>
+                <button class="btn btn-success" onclick="saveToEmployess()">Save</button>
+            </div>
+          </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
