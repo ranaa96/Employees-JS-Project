@@ -50,8 +50,8 @@ function drawEmployeeTable(){
         '<td>'+e.Name+'</td><td>'+e.Age+'</td><td>'+e.Salary+'</td>'+
         '<td>'+e.Gender+'</td>'+
         '<td>'+
-        '<button class="btn btn-danger" onClick="deleteEmployee('+employees.indexOf(e) +')">Delete</button>'+
-        '<button class="btn btn-primary" onClick="editEmployee('+ employees.indexOf(e)+')">Edit</button>'+
+        '<button class="btn btn-danger" onClick="deleteEmployee('+e.Id +')">Delete</button>'+
+        '<button class="btn btn-primary" onClick="editEmployee('+ e.Id+')">Edit</button>'+
         '</td></tr>' ;
        
         
@@ -71,13 +71,27 @@ function saveToEmployess(){
     var eAge = document.getElementById('inputAge').value;
     var eSalary = document.getElementById('inputSalary').value;
     var eGender= document.getElementById('inputGender').value;
+    // عشان افرق بين الايديت و الادد
+    //aDD
+    if (document.getElementById('inputID').value == '') {
 
-    var lastIndex = employees.length-1 ; 
-    newId = employees[lastIndex].Id + 1   ;
+      var lastIndex = employees.length-1 ; 
+      newId = employees[lastIndex].Id + 1   ;
+  
+      var newE = { 'Id': newId , 'Name': eName, 'Age': eAge, 'Salary': eSalary, 'Gender': eGender } ;
+      employees.push(newE);
+  
 
-    var newE = { 'Id': newId , 'Name': eName, 'Age': eAge, 'Salary': eSalary, 'Gender': eGender } ;
-    employees.push(newE);
-
+    }
+    //EDIT
+    else {
+      var index = getIndexById(document.getElementById('inputID').value);
+      employees[index].Name = eName;
+      employees[index].Age = eAge;
+      employees[index].Salary = eSalary;
+      employees[index].Gender = eGender;
+    }
+    
     displayView();
     drawEmployeeTable();
 }
@@ -98,7 +112,7 @@ function displayDetails(){
 
 
 function addEmployee() {
-   
+    document.getElementById('inputID').value = '';
     document.getElementById('inputName').value = '';
     document.getElementById('inputAge').value = '';
     document.getElementById('inputSalary').value = '';
@@ -111,9 +125,18 @@ function deleteEmployee(index){
     drawEmployeeTable();
 
 }
+function getIndexById (id) {
+  for (var i = 0 ; i<employees.length ; i++){
+    if(employees[i].Id== id) {
+      return i ;
+    }
+  }
+}
 
-function editEmployee(index){
+function editEmployee(id){
     displayDetails();
+    var index = getIndexById(id);
+    document.getElementById('inputID').value = employees[index].Id;
     document.getElementById('inputName').value=employees[index].Name;
     document.getElementById('inputAge').value=employees[index].Age;
     document.getElementById('inputSalary').value=employees[index].Salary;
